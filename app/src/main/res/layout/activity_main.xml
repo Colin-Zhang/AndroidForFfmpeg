@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <VideoView
+        android:layout_gravity="center"
+        android:id="@+id/mVideoView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
     <Button
         android:id="@+id/sample_text"
         android:layout_width="wrap_content"

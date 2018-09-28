@@ -1,77 +1,8 @@
+# Sets the minimum version of CMake required to build the native
+# library. You should either keep the default value or only pass a
+# value of 3.4.0 or lower.
+
 cmake_minimum_required(VERSION 3.4.1)
-
-add_library( # Sets the name of the library.
-             ffmpegcmd
-
-             # Sets the library as a shared library.
-             SHARED
-
-             # Provides a relative path to your source file(s).
-              src/main/cpp/ffmpeg/include/cmdutils.c
-              src/main/cpp/ffmpeg/include/ffmpeg.c
-              src/main/cpp/ffmpeg/include/ffmpeg_filter.c
-              src/main/cpp/ffmpeg/include/ffmpeg_hw.c
-              src/main/cpp/ffmpeg/include/ffmpeg_opt.c
-              src/main/cpp/ffmpeg/include/ffmpeg_thread.c
-             src/main/cpp/ffmpeg_cmd_utils.c
-              )
-
-#添加libavcodec-57.so
-add_library( avcodec
-             SHARED
-             IMPORTED)
-set_target_properties( avcodec
-                       PROPERTIES IMPORTED_LOCATION
-                       ${CMAKE_SOURCE_DIR}/src/main/cpp/ffmpeg/armeabi-v7a/libavcodec.so)
-
-#添加libavdevice-57.so
-add_library( avdevice
-             SHARED
-             IMPORTED)
-set_target_properties( avdevice
-                       PROPERTIES IMPORTED_LOCATION
-                       ${CMAKE_SOURCE_DIR}/src/main/cpp/ffmpeg/armeabi-v7a/libavdevice.so)
-
-add_library( avfilter
-             SHARED
-             IMPORTED)
-set_target_properties( avfilter
-                       PROPERTIES IMPORTED_LOCATION
-                       ${CMAKE_SOURCE_DIR}/src/main/cpp/ffmpeg/armeabi-v7a/libavfilter.so)
-
-add_library( avformat
-             SHARED
-             IMPORTED)
-set_target_properties( avformat
-                       PROPERTIES IMPORTED_LOCATION
-                       ${CMAKE_SOURCE_DIR}/src/main/cpp/ffmpeg/armeabi-v7a/libavformat.so)
-
-add_library( avutil
-             SHARED
-             IMPORTED)
-set_target_properties( avutil
-                       PROPERTIES IMPORTED_LOCATION
-                       ${CMAKE_SOURCE_DIR}/src/main/cpp/ffmpeg/armeabi-v7a/libavutil.so)
-
-add_library( swresample
-             SHARED
-             IMPORTED)
-set_target_properties( swresample
-                       PROPERTIES IMPORTED_LOCATION
-                       ${CMAKE_SOURCE_DIR}/src/main/cpp/ffmpeg/armeabi-v7a/libswresample.so)
-
-add_library( swscale
-             SHARED
-             IMPORTED)
-set_target_properties( swscale
-                       PROPERTIES IMPORTED_LOCATION
-                       ${CMAKE_SOURCE_DIR}/src/main/cpp/ffmpeg/armeabi-v7a/libswscale.so)
-
-
-
-include_directories(src/main/cpp/ffmpeg/include)
-
-
 
 find_library( # Sets the name of the path variable.
               log-lib
@@ -80,19 +11,63 @@ find_library( # Sets the name of the path variable.
               # you want CMake to locate.
               log )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+#set(distribution_DIR ${CMAKE_SOURCE_DIR}/../../../../libs)
 
-target_link_libraries( # Specifies the target library.
 
-                       ffmpegcmd
-                       avcodec
-                       avdevice
-                       avfilter
-                       avformat
-                       avutil
-                       swresample
-                       swscale
 
-                       # Links the target library to the log library
-                       # included in the NDK.
+add_library( avutil-55
+             SHARED
+             IMPORTED )
+set_target_properties( avutil-55
+                       PROPERTIES IMPORTED_LOCATION
+                       ../../../../libs/armeabi-v7a/libavutil-55.so )
+
+add_library( swresample-2
+             SHARED
+             IMPORTED )
+set_target_properties( swresample-2
+                       PROPERTIES IMPORTED_LOCATION
+                       ../../../../libs/armeabi-v7a/libswresample-2.so )
+add_library( avcodec-57
+             SHARED
+             IMPORTED )
+set_target_properties( avcodec-57
+                       PROPERTIES IMPORTED_LOCATION
+                       ../../../../libs/armeabi-v7a/libavcodec-57.so )
+add_library( avfilter-6
+             SHARED
+             IMPORTED)
+set_target_properties( avfilter-6
+                       PROPERTIES IMPORTED_LOCATION
+                       ../../../../libs/armeabi-v7a/libavfilter-6.so )
+add_library( swscale-4
+             SHARED
+             IMPORTED)
+set_target_properties( swscale-4
+                       PROPERTIES IMPORTED_LOCATION
+                       ../../../../libs/armeabi-v7a/libswscale-4.so )
+
+add_library( avformat-57
+             SHARED
+             IMPORTED)
+set_target_properties( avformat-57
+                       PROPERTIES IMPORTED_LOCATION
+                       ../../../../libs/armeabi-v7a/libavformat-57.so )
+
+
+add_library( native-lib
+             SHARED
+             src/main/cpp/native-lib.cpp
+             src/main/cpp/cmdutils.c
+             src/main/cpp/ffmpeg.c
+             src/main/cpp/ffmpeg_filter.c
+             src/main/cpp/ffmpeg_opt.c
+
+              )
+
+include_directories(libs/include)
+
+#target_include_directories(native-lib PRIVATE libs/include)
+
+target_link_libraries( native-lib avutil-55 swresample-2 avcodec-57 avfilter-6 swscale-4 avformat-57 -landroid # Add this.
                        ${log-lib} )
