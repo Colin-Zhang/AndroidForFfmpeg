@@ -38,7 +38,12 @@
 #if HAVE_UNISTD_H
 #include <unistd.h>
 #endif
-
+#define LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define LOGW(...)  __android_log_print(ANDROID_LOG_WARN,LOG_TAG,__VA_ARGS__)
+#define LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+#define LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
+#define LOGF(...)  __android_log_print(ANDROID_LOG_FATAL,LOG_TAG,__VA_ARGS__)
+#define LOGV(...)  __android_log_print(ANDROID_LOG_VERBOSE,LOG_TAG,__VA_ARGS__)
 #include "libavformat/avformat.h"
 #include "libavdevice/avdevice.h"
 #include "libswresample/swresample.h"
@@ -100,6 +105,7 @@
 #endif
 
 #include <time.h>
+#include <android/log.h>
 
 #include "ffmpeg.h"
 #include "cmdutils.h"
@@ -591,6 +597,11 @@ static void ffmpeg_cleanup(int ret)
     }
     term_exit();
     ffmpeg_exited = 1;
+    nb_filtergraphs = 0;
+    nb_output_files = 0;
+    nb_output_streams = 0;
+    nb_input_files = 0;
+    nb_input_streams = 0;
 }
 
 void remove_avoptions(AVDictionary **a, AVDictionary *b)
@@ -4528,6 +4539,9 @@ static int64_t getmaxrss(void)
 
 static void log_callback_null(void *ptr, int level, const char *fmt, va_list vl)
 {
+
+
+
 }
 
 int execute(int argc, char **argv)
@@ -4601,5 +4615,6 @@ int execute(int argc, char **argv)
         exit_program(69);
 
     exit_program(received_nb_signals ? 255 : main_return_code);
+    ffmpeg_cleanup(0);
     return main_return_code;
 }

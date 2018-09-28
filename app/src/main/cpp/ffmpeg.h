@@ -442,9 +442,7 @@ typedef struct OutputStream {
     int force_fps;
     int top_field_first;
     int rotate_overridden;
-
     AVRational frame_aspect_ratio;
-
     /* forced key frames */
     int64_t *forced_kf_pts;
     int forced_kf_count;
@@ -452,19 +450,15 @@ typedef struct OutputStream {
     char *forced_keyframes;
     AVExpr *forced_keyframes_pexpr;
     double forced_keyframes_expr_const_values[FKF_NB];
-
     /* audio only */
     int *audio_channels_map;             /* list of the channels id to pick from the source stream */
     int audio_channels_mapped;           /* number of channels in audio_channels_map */
-
     char *logfile_prefix;
     FILE *logfile;
-
     OutputFilter *filter;
     char *avfilter;
     char *filters;         ///< filtergraph associated to the -filter option
     char *filters_script;  ///< filtergraph script associated to the -filter_script option
-
     AVDictionary *encoder_opts;
     AVDictionary *sws_dict;
     AVDictionary *swr_opts;
@@ -473,7 +467,6 @@ typedef struct OutputStream {
     OSTFinished finished;        /* no more packets should be written for this stream */
     int unavailable;                     /* true if the steram is unavailable (possibly temporarily) */
     int stream_copy;
-
     // init_output_stream() has been called for this stream
     // The encoder and the bitstream filters have been initialized and the stream
     // parameters are set in the AVStream.
