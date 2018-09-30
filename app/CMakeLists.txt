@@ -57,11 +57,12 @@ set_target_properties( avformat-57
 
 add_library( native-lib
              SHARED
-             src/main/cpp/native-lib.cpp
+             src/main/cpp/native-lib.c
              src/main/cpp/cmdutils.c
              src/main/cpp/ffmpeg.c
              src/main/cpp/ffmpeg_filter.c
              src/main/cpp/ffmpeg_opt.c
+      src/main/cpp/ffmpeg_thread.c
 
               )
 

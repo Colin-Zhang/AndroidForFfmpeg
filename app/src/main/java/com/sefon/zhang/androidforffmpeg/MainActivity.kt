@@ -12,8 +12,16 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.Toast
 
 
+class MainActivity : AppCompatActivity(), FFmpegUtils.OnExecListener {
+    var startTime: Long = 0
+    override fun onProgress() {
 
-class MainActivity : AppCompatActivity(), FFmpegCmd.OnExecListener {
+        val endTime = SystemClock.currentThreadTimeMillis()
+        runOnUiThread {
+            Toast.makeText(this, "执行完成", Toast.LENGTH_SHORT).show()
+            Log.e("tag", "使用时间：" + (endTime - startTime) + "毫秒")
+        }
+    }
 
 
     private lateinit var show: ProgressDialog
@@ -21,29 +29,18 @@ class MainActivity : AppCompatActivity(), FFmpegCmd.OnExecListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         sample_text.setOnClickListener {
-            val str = " ffmpeg -formats | less"
-            toExec(str)
-        }
-    }
 
-    private fun toExec(cmd: String) {
             crop()
+        }
     }
 
 
     private fun crop() {
+        startTime = currentThreadTimeMillis()
         val commands = arrayOf("ffmpeg", "-y", "-i", "/storage/emulated/0/DCIM/Camera/5b769345be3365e7bfaa3350e563b330.mp4", "-vframes", "30", "-y", "-f", "gif", "/sdcard/crop_30.gif")
         Thread(Runnable {
-            val startTime = currentThreadTimeMillis()
-            FFmpegCmd.execommand(commands,this)
-            val endTime = SystemClock.currentThreadTimeMillis()
-            runOnUiThread {
-                Log.e("tag", "使用时间：" + (endTime - startTime) + "毫秒")
-            }
+            FFmpegUtils.minstance.executeCommand(commands, this)
         }).start()
     }
 
-    override fun onExecuted(ret: Int) {
-
-    }
 }

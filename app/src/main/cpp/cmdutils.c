@@ -64,7 +64,7 @@
 #ifdef _WIN32
 #include <windows.h>
 #endif
-
+#include "ffmpeg_thread.h"
 static int init_report(const char *env);
 
 AVDictionary *sws_dict;
@@ -128,10 +128,11 @@ void register_exit(void (*cb)(int ret))
 
 int exit_program(int ret)
 {
-//    if (program_exit)
-//        program_exit(ret);
-//
-//    exit(ret);
+    if (program_exit) {
+        program_exit(ret);
+    }
+    //退出线程
+    thread_exit(ret);
     return ret;
 }
 
