@@ -18,12 +18,19 @@ class FFmpegUtils {
     }
 
     interface OnExecListener {
-        fun onProgress()
+        fun onFinish()
+        fun onProgressLog(info :String)
     }
-    fun onProgressCallBack(flag: Int) {
+    fun onFinish() {
         if (listener!=null)
-            listener!!.onProgress()
-        Log.e("result","回调回调")
+            listener!!.onFinish()
+
+    }
+
+    fun onProgressInfo(line : String) {
+
+        if (listener!=null)
+            listener!!.onProgressLog(line)
     }
     companion object {
 
@@ -39,7 +46,7 @@ class FFmpegUtils {
             System.loadLibrary("avformat-57")
         }
 
-        public val minstance: FFmpegUtils
+        val instance: FFmpegUtils
             get() {
                 if (mInstance == null)
                     mInstance = FFmpegUtils()

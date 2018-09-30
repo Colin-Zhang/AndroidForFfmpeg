@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,20 +7,32 @@
     tools:context=".MainActivity">
 
 
-    <VideoView
-        android:layout_gravity="center"
-        android:id="@+id/mVideoView"
+    <EditText
+        android:id="@+id/command_edit"
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="input your_commands"
+        android:padding="20dp"
+        android:singleLine="true" />
 
     <Button
         android:id="@+id/sample_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_below="@id/command_edit"
+        android:layout_centerHorizontal="true"
 
-</android.support.constraint.ConstraintLayout>
+        android:text="Execute" />
+
+    <EditText
+        android:id="@+id/log_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/sample_text"
+        android:background="@drawable/log_border"
+        android:editable="false"
+        android:padding="20dp"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="12sp" />
+</RelativeLayout>

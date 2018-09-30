@@ -41,8 +41,8 @@ void *threadCallBack(void *context) {
         }
     }
     jmethodID statusId = (*env)->GetMethodID(env, pctx->jniHelperClz,
-                                             "onProgressCallBack",
-                                             "(I)V");
+                                             "onFinish",
+                                             "()V");
     (*env)->CallVoidMethod(env, pctx->mainActivityObj, statusId);
 
     (*javaVM)->DetachCurrentThread(javaVM);
