@@ -84,7 +84,7 @@ void my_logcat(void *ptr, int level, const char *fmt, va_list vl) {
             break;
 
         case AV_LOG_DEBUG:
-
+            threadExecuteInfoCallBack(&g_ctx, line);
             LOGE("Info ==== %s", line);
             break;
 
@@ -93,14 +93,12 @@ void my_logcat(void *ptr, int level, const char *fmt, va_list vl) {
             break;
 
         case AV_LOG_WARNING:
-            LOGW("Warning === %s", line);
-            threadExecuteInfoCallBack(&g_ctx, line);
+
             break;
 
         case AV_LOG_TRACE:
         case AV_LOG_ERROR:
         default:
-            threadExecuteInfoCallBack(&g_ctx, line);
             LOGD("default === %s", line);
     }
 }

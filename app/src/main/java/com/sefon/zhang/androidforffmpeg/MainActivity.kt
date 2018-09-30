@@ -4,6 +4,7 @@ package com.sefon.zhang.androidforffmpeg
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity(), FFmpegUtils.OnExecListener {
     }
 
     private fun execute(command: String) {
+        val commands = arrayOf("ffmpeg", "-y", "-i", "/storage/emulated/0/DCIM/Camera/5b769345be3365e7bfaa3350e563b330.mp4", "-vframes", "30", "-y", "-f", "gif", "/sdcard/crop_30.gif")
 
         Thread(Runnable {
             FFmpegUtils.instance.executeCommand(getArr(command), this)
@@ -45,7 +47,12 @@ class MainActivity : AppCompatActivity(), FFmpegUtils.OnExecListener {
     }
 
     fun getArr(line: String): Array<String> {
-        return line.split(" ").toTypedArray()
+        var array = line.split(" ").toTypedArray()
+        for (item in array.indices) {
+            array[item] = array[item].trim()
+            Log.e("command : " ,array[item])
+        }
+        return array
     }
 
 
