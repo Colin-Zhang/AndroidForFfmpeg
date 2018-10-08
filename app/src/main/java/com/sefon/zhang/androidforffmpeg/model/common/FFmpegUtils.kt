@@ -1,6 +1,4 @@
-package com.sefon.zhang.androidforffmpeg
-
-import android.util.Log
+package com.sefon.zhang.androidforffmpeg.model.common
 
 class FFmpegUtils {
     private var listener: OnExecListener? = null

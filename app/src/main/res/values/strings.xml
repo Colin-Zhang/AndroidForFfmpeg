@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AndroidForFfmpeg</string>
     <string name="info">info.......</string>
+    <string name="useCommand">使用命令</string>
+    <string name="video">视频剪辑</string>
+    <string name="ShotVideo">拍摄视频</string>
 </resources>

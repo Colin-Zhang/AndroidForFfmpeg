@@ -114,7 +114,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, jobject jObjct) {
     }
 
     jclass clz = (*env)->FindClass(env,
-                                   "com/sefon/zhang/androidforffmpeg/FFmpegUtils");
+                                   "com/sefon/zhang/androidforffmpeg/model/common/FFmpegUtils");
     g_ctx.jniHelperClz = (*env)->NewGlobalRef(env, clz);
 
     jmethodID jniHelperCtor = (*env)->GetMethodID(env, g_ctx.jniHelperClz,
@@ -134,7 +134,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, jobject jObjct) {
  * Interface to Java side to start ticks, caller is from onResume()
  */
 JNIEXPORT void JNICALL
-Java_com_sefon_zhang_androidforffmpeg_FFmpegUtils_execute(JNIEnv *env, jobject instance,
+Java_com_sefon_zhang_androidforffmpeg_model_common_FFmpegUtils_execute(JNIEnv *env, jobject instance,
                                                           jint cmdnum, jobjectArray commands) {
     pthread_attr_t threadAttr_;
     pthread_attr_init(&threadAttr_);
