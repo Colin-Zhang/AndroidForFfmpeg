@@ -1,4 +1,4 @@
-package com.sefon.zhang.androidforffmpeg.view.cutvideo
+package com.sefon.zhang.androidforffmpeg.model.utils
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -8,7 +8,6 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import android.view.View
 
 import java.io.File
 import java.io.IOException
