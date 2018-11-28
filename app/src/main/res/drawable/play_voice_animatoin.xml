@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-</selector>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@drawable/voice_player_one" android:duration="1000" />
+    <item android:drawable="@drawable/voice_player_two" android:duration="1000" />
+    <item android:drawable="@drawable/voice_player_three" android:duration="1000" />
+</animation-list>

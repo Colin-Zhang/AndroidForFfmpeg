@@ -70,6 +70,7 @@ class ShotActivity : AppCompatActivity(), View.OnClickListener {
         mProgressNumber = 0
         progress.progress = 0
         helper!!.record()
+
         startView()
     }
     private fun stopShot() {

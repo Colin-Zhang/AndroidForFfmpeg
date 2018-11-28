@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-</android.support.constraint.ConstraintLayout>
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/dialog_border"
+        android:layout_height="150dip">
+
+    <app.dinus.com.loadingdrawable.LoadingView
+        android:id="@+id/water_bottle_view"
+        android:background="#CDC673"
+        android:layout_width="match_parent"
+        android:layout_height="150dip"
+        app:loading_renderer="ElectricFanLoadingRenderer"/>
+    </LinearLayout>
+</LinearLayout>

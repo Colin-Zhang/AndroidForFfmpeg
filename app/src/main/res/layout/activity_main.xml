@@ -20,4 +20,13 @@
         android:layout_below="@id/useCommand"
         android:layout_centerInParent="true"
         android:text="@string/video" />
+
+    <Button
+        android:id="@+id/getVoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/videoControl"
+        android:layout_centerInParent="true"
+        android:text="@string/GetVoice" />
+
 </RelativeLayout>

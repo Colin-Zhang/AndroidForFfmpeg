@@ -4,4 +4,5 @@
     <string name="useCommand">使用命令</string>
     <string name="video">视频剪辑</string>
     <string name="ShotVideo">拍摄视频</string>
+    <string name="GetVoice">抽取声音</string>
 </resources>

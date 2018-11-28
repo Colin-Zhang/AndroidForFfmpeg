@@ -1,9 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.getvoice.GetVoice">
+    android:orientation="vertical"
+    tools:context=".view.getvoice.GetVoiceActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dip"
+        android:layout_margin="40dp"
+        android:layout_marginTop="20dip"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/videoAddr"
+            android:layout_width="wrap_content"
+            android:layout_height="30dip"
+            android:layout_weight="1"
+            android:background="@drawable/edit_border"
+            android:gravity="center"
+            android:hint="视频地址"
+            android:singleLine="true"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/pickFile"
+            android:layout_width="28dip"
+            android:layout_height="28dip"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/icon_file"
+            tools:layout_editor_absoluteX="364dp"
+            tools:layout_editor_absoluteY="36dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dip"
+        android:layout_margin="40dp"
+        android:layout_marginTop="20dip"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="30dip"
+            android:id="@+id/voiceAddr"
+            android:layout_weight="1"
+            android:background="@drawable/edit_border"
+            android:gravity="center"
+            android:hint="声音路径"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="28dip"
+            android:layout_height="28dip"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/openVoiceAddr"
+            android:src="@drawable/icon_file"
+            tools:layout_editor_absoluteX="364dp"
+            tools:layout_editor_absoluteY="36dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/voiceLayout"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+
+        <LinearLayout
+            android:layout_width="100dip"
+            android:layout_height="30dip"
+            android:id="@+id/voice_border"
+            android:layout_margin="40dp"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/voice_border"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/playVoice"
+                android:layout_width="24dip"
+                android:layout_height="24dip"
+                android:layout_gravity="center"
+                android:src="@drawable/voice_player_three" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/voice_duration"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="157dp"
+            android:text="10″"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="157dp" />
+    </RelativeLayout>
+</LinearLayout>
